@@ -10,13 +10,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 // 데이터가 xForm 형태로 들어옴
-@WebServlet("/join")
+//@WebServlet("/join")
 public class JoinServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader("Content-Type","text/html; charset= utf-8");
         // username=ssar&password=1234&email=ssar@nate.com
-
 
         //
         //        BufferedReader reader = req.getReader();
@@ -48,6 +47,7 @@ public class JoinServlet extends HttpServlet {
         if (userName.length() < 3 || userName.length() > 10){
 
             resp.getWriter().println("<h1>유저네임의 글자수가 3~10 사이어야합니다.</h1>");
+            return;
         }
 
         // 3. DB연결
@@ -55,6 +55,22 @@ public class JoinServlet extends HttpServlet {
         // 4. DAO 의 insert 매서드의 호출
 
         // 5. 메인 페이지 그리기(비효율)
+//        String html = "  \"<!DOCTYPE html>\\n\" +\n" +
+//                "                \"<html lang=\\\"en\\\">\\n\" +\n" +
+//                "                \"\\n\" +\n" +
+//                "                \"<head>\\n\" +\n" +
+//                "                \"    <meta charset=\\\"UTF-8\\\">\\n\" +\n" +
+//                "                \"    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n\" +\n" +
+//                "                \"    <title>Document</title>\\n\" +\n" +
+//                "                \"</head>\\n\" +\n" +
+//                "                \"\\n\" +\n" +
+//                "                \"<body>\\n\" +\n" +
+//                "                \"    <h1>메인 페이지</h1>\\n\" +\n" +
+//                "                \"    <hr>\\n\" +\n" +
+//                "                \"</body>\\n\" +\n" +
+//                "                \"\\n\" +\n" +
+//                "                \"</html>\"";
+//        resp.getWriter().println(html);
 
         // 6. 리다이랙트
         // 프로토콜 300번대는 맨끝에 로케이션안에(uri 넣어서보냄)
@@ -62,6 +78,7 @@ public class JoinServlet extends HttpServlet {
 
         resp.setStatus(302);  // 리다이렉션
         resp.setHeader("Location","/main"); // 직접 Location 넣음
+
         resp.setHeader("clock","12pm");
     }
 }
