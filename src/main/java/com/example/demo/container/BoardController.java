@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.container;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,5 +10,4 @@ public class BoardController {
     public String main() {
         return "main";
     }
-
 }
